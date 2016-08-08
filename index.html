@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<!-- load D3js -->
+<script src="http://www.d3plus.org/js/d3.js"></script>
+
+<!-- load topojson library -->
+<script src="http://www.d3plus.org/js/topojson.js"></script>
+
+<!-- load D3plus after D3js -->
+<script src="http://www.d3plus.org/js/d3plus.js"></script>
+
+<!-- create container element for visualization -->
+<div id="viz"></div>
+    
+<style>
+    
+tspan {
+    font-family: Arial, Helvetica, sans-serif;
+    /*font-size:1.3em;*/
+    margin:30px;
+}
+    
+</style>
+
+</head>
+
+<body>
+    
+<div id="viz">
+
+    
+</div>    
+    
+<script>
+  // sample data array
+
+  var sample_data = [
+    {"visitors":151, "country":"nausa", "name":"United States"},
+    {"visitors":23, "country":"sabra", "name":"Brazil"},
+    {"visitors":15, "country":"aschn", "name":"China"},
+    {"visitors":161, "country":"euesp", "name":"Spain"},
+    {"visitors":391, "country":"eugbr", "name":"Great Britain"},
+    {"visitors":554, "country":"eunor", "name":"Norway"},
+    {"visitors":77, "country":"euswe","name":"Sweden"},
+    {"visitors":324, "country":"euche","name":"Switzerland"},
+    {"visitors":353, "country":"euned","name":"Netherlands"},
+    {"visitors":63, "country":"euest","name":"Estonia"},
+    {"visitors":185, "country":"eufin","name":"Finland"}, 
+    {"visitors":176, "country":"eufra","name":"France"},
+    {"visitors":153, "country":"euger","name":"Germany"},
+    {"visitors":117, "country":"euita","name":"Italy"},
+    {"visitors":43, "country":"eubel","name":"Belgium"},
+    {"visitors":19, "country":"eurom","name":"Romania"},
+    {"visitors":16, "country":"asrus","name":"Russian Federation"},
+    {"visitors":44, "country":"euisl","name":"Iceland"},
+    {"visitors":146, "country":"asjpn","name":"Japan"},
+    {"visitors":56, "country":"eugre","name":"Greece"},
+    {"visitors":221, "country":"eudnk","name":"Denmark"},
+    {"visitors":11, "country":"eupol","name":"Poland"},
+]
+
+  // instantiate d3plus
+  var visualization = d3plus.viz()
+    .container("#viz")        // container DIV to hold the visualization
+    .data(sample_data)        // data to use with the visualization
+    //.coords("http://d3plus.org/topojson/countries.json") // pass topojson coordinates
+    .coords("countries.json")
+    .type("geo_map")          // visualization type
+    .id("country")            // key for which our data is unique on
+    .text("name")             // key to use for display text
+    .color("visitors")           // key for coloring countries
+    .tooltip("visitors")         // keys to place in tooltip
+    .title({
+      "sub": "Number of visitors for each country using mock data (Click on country to zoom, double click on selected country to zoom out. You could also scroll as well as click and drag the map around.)",
+      "total": true,
+      /*"height": 100,*/
+      "width": 1200
+       
+    })
+    .font({"size": 20})   
+    .footer({
+      "link": "http://actris.nilu.no",
+      "value": "Click here to find more information about the ACTRIS project"
+    })
+    .draw()                   // finally, draw the visualization!
+</script>
+
+</body>
+
+</html>
