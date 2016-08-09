@@ -24634,7 +24634,7 @@ module.exports = function( vars , group ) {
           var min = t.resize[0], max = t.resize[1];
         }
 
-        var size = t.resize, resize = true;
+        var size = t.resize, resize = true; //previously true
 
         if (t.text) {
 

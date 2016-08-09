@@ -26,6 +26,20 @@ tspan {
     margin:30px;
 }
     
+    #viz_sankey {
+        width: 1200px;
+        height:600px;
+        margin-top:100px;
+        margin-left:400px;
+        margin-right:300px;
+        margin-bottom:200px;
+        
+    }
+    
+    #sankey_container {
+        background-color:grey;
+    }
+    
 </style>
 
 </head>
@@ -41,28 +55,28 @@ tspan {
   // sample data array
 
   var sample_data = [
-    {"visitors":151, "country":"nausa", "name":"United States"},
-    {"visitors":23, "country":"sabra", "name":"Brazil"},
-    {"visitors":15, "country":"aschn", "name":"China"},
-    {"visitors":161, "country":"euesp", "name":"Spain"},
-    {"visitors":391, "country":"eugbr", "name":"Great Britain"},
-    {"visitors":554, "country":"eunor", "name":"Norway"},
-    {"visitors":77, "country":"euswe","name":"Sweden"},
-    {"visitors":324, "country":"euche","name":"Switzerland"},
-    {"visitors":353, "country":"euned","name":"Netherlands"},
-    {"visitors":63, "country":"euest","name":"Estonia"},
-    {"visitors":185, "country":"eufin","name":"Finland"}, 
-    {"visitors":176, "country":"eufra","name":"France"},
-    {"visitors":153, "country":"euger","name":"Germany"},
-    {"visitors":117, "country":"euita","name":"Italy"},
-    {"visitors":43, "country":"eubel","name":"Belgium"},
-    {"visitors":19, "country":"eurom","name":"Romania"},
-    {"visitors":16, "country":"asrus","name":"Russian Federation"},
-    {"visitors":44, "country":"euisl","name":"Iceland"},
-    {"visitors":146, "country":"asjpn","name":"Japan"},
-    {"visitors":56, "country":"eugre","name":"Greece"},
-    {"visitors":221, "country":"eudnk","name":"Denmark"},
-    {"visitors":11, "country":"eupol","name":"Poland"},
+    {"downloads":151, "country":"nausa", "name":"United States"},
+    {"downloads":23, "country":"sabra", "name":"Brazil"},
+    {"downloads":15, "country":"aschn", "name":"China"},
+    {"downloads":161, "country":"euesp", "name":"Spain"},
+    {"downloads":391, "country":"eugbr", "name":"Great Britain"},
+    {"downloads":554, "country":"eunor", "name":"Norway"},
+    {"downloads":77, "country":"euswe","name":"Sweden"},
+    {"downloads":324, "country":"euche","name":"Switzerland"},
+    {"downalods":353, "country":"euned","name":"Netherlands"},
+    {"downloads":63, "country":"euest","name":"Estonia"},
+    {"downloads":185, "country":"eufin","name":"Finland"}, 
+    {"downloads":176, "country":"eufra","name":"France"},
+    {"downloads":153, "country":"euger","name":"Germany"},
+    {"downloads":117, "country":"euita","name":"Italy"},
+    {"downloads":43, "country":"eubel","name":"Belgium"},
+    {"downloads":19, "country":"eurom","name":"Romania"},
+    {"downloads":16, "country":"asrus","name":"Russian Federation"},
+    {"downloads":44, "country":"euisl","name":"Iceland"},
+    {"downloads":146, "country":"asjpn","name":"Japan"},
+    {"downloads":56, "country":"eugre","name":"Greece"},
+    {"downloads":221, "country":"eudnk","name":"Denmark"},
+    {"downloads":11, "country":"eupol","name":"Poland"},
 ]
 
   // instantiate d3plus
@@ -73,9 +87,11 @@ tspan {
     .coords("countries.json")
     .type("geo_map")          // visualization type
     .id("country")            // key for which our data is unique on
-    .text("name")             // key to use for display text
-    .color("visitors")           // key for coloring countries
-    .tooltip("visitors")         // keys to place in tooltip
+    .labels({"value": true})
+    .text("name")
+    //.labels({"value": true, "resize": false})
+    .color({"heatmap":["#ffffe5","#662506"], "value":"downloads"})           // key for coloring countries
+    .tooltip("downloads")         // keys to place in tooltip
     .title({
       "sub": "Number of visitors for each country using mock data (Click on country to zoom, double click on selected country to zoom out. You could also scroll as well as click and drag the map around.)",
       "total": true,
@@ -89,6 +105,74 @@ tspan {
       "value": "Click here to find more information about the ACTRIS project"
     })
     .draw()                   // finally, draw the visualization!
+  
+
+  
+</script>
+
+        <div id="viz_sankey"></div>
+
+<script>
+  var nodes = [
+    {"id": "EBAS"}, // 0
+    {"id": "CLOUDNET"}, // 1
+    {"id": "EARLINET"}, // 2
+    {"id": "ICARE"}, // 3
+    {"id": "Total"}, // 4
+    {"id": "Norway"}, //5
+    {"id": "Sweden"}, //6
+      {"id": "Germany"}, //7
+      {"id": "Brazil"}, //8
+      {"id": "Russia"}, //9
+      {"id": "China"}, //10
+      {"id": "Switzerland"}, //11
+      {"id": "Italy"}, //12
+  ];
+    
+  var edges = [
+    {"downloads": 50, "source": 0, "target": 4},
+    {"downloads": 20, "source": 1, "target": 4},
+    {"downloads": 10, "source": 2, "target": 4},
+    {"downloads": 20, "source": 3, "target": 4},
+    {"downloads": 10, "source": 4, "target": 5},
+    {"downloads": 5, "source": 4, "target": 6},
+    {"downloads": 5, "source": 4, "target": 7},
+    {"downloads": 20, "source": 4, "target": 8},
+    {"downloads": 30, "source": 4, "target": 9},
+    {"downloads": 20, "source": 4, "target": 10},
+    {"downloads": 4, "source": 4, "target": 11},
+    {"downloads": 6, "source": 4, "target": 12},
+    
+  ];
+  var visualization = d3plus.viz()
+    .container("#viz_sankey")
+    .edges({
+      "strength": "downloads",
+      "value": edges
+    })
+    .focus({
+      "tooltip": true,
+      "value": "Total"
+    })
+    .tooltip("downloads")
+    .title({
+      "sub": "Number of downloads (mock data). Click the database to get more information",
+      "total": true
+       
+    })
+    .font({"size": 20})   
+    .footer({
+      "link": "http://actris.nilu.no",
+      "value": "Click here to find more information about the ACTRIS project"
+    })
+    .id("id")
+    .nodes(nodes)
+    .size(100)
+    .color(function(d){
+        return d.downloads > 0 ? "#ffffe5" : "#525252";
+    })
+    .type("sankey")
+    .draw();
 </script>
 
 </body>
