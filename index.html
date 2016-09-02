@@ -20,11 +20,17 @@
     
 <style>
     
-tspan {
-    font-family: Arial, Helvetica, sans-serif;
-    /*font-size:1.3em;*/
-    margin:30px;
-}
+    tspan {
+        font-family: Arial, Helvetica, sans-serif;
+        /*font-size:1.3em;*/
+        margin:30px;
+    }
+    
+    #viz {
+        /*margin-top:200px;
+        width: 800px;   
+        height: 800px;*/
+    }
     
     #viz_sankey {
         width: 1200px;
@@ -40,16 +46,103 @@ tspan {
         background-color:grey;
     }
     
+
+    
 </style>
 
 </head>
 
 <body>
     
-<div id="viz">
-
+<div id="viz-zeppelin-all">
     
 </div>    
+        
+<script>
+
+
+
+
+
+var sample_data = [
+
+    {"users":205, "country":"eunor", "name":"Norway"},
+    {"users":138, "country":"nausa", "name":"United States"},
+    {"users":99, "country":"eugbr", "name":"United Kingdom"},
+    {"users":61, "country":"eudeu", "name":"Germany"},
+    {"users":61, "country":"euche", "name":"Switzerland"},
+    {"users":56, "country":"euswe", "name":"Sweden"},
+    {"users":49, "country":"eufin", "name":"Finland"},
+    {"users":40, "country":"eufra", "name":"France"},
+    {"users":34, "country":"eugrc", "name":"Greece"},
+    {"users":32, "country":"euita", "name":"Italy"},
+    {"users":30, "country":"aschn", "name":"China"},
+    {"users":24, "country":"asjpn", "name":"Japan"},
+    {"users":30, "country":"eunld", "name":"Netherlands"},
+    {"users":24, "country":"eucze", "name":"Czech Republic"},
+    {"users":22, "country":"nacan", "name":"Canada"},
+    {"users":17, "country":"euesp", "name":"Spain"},
+    {"users":16, "country":"askor", "name":"Korea"},
+    {"users":10, "country":"eudnk", "name":"Denmark"},
+    {"users":9, "country":"eupol", "name":"Poland"},
+    {"users":8, "country":"asrus", "name":"Russia"},
+    {"users":6, "country":"ocaus", "name":"Australia"},
+    {"users":4, "country":"euisl", "name":"Iceland"},
+    {"users":5, "country":"eubel", "name":"Belgium"},
+    {"users":4, "country":"asind", "name":"India"},
+    {"users":4, "country":"euirl", "name":"Ireland"},
+    {"users":4, "country":"eusvn", "name":"Slovenia"},
+    {"users":3, "country":"assgp", "name":"Singapore"},
+    {"users":3, "country":"euaut", "name":"Austria"},
+    {"users":2, "country":"eublr", "name":"Belarus"},
+    {"users":2, "country":"eusvk", "name":"Slovakia"},
+    {"users":1, "country":"euhrv", "name":"Croatia"},
+    {"users":1, "country":"sabra", "name":"Brazil"},
+    {"users":1, "country":"astwn", "name":"Taiwan"},
+    {"users":1, "country":"astur", "name":"Turkey"},
+    {"users":1, "country":"ocnzl", "name":"New Zealand"},
+    {"users":1, "country":"eulux", "name":"Luxembourg"},
+    {"users":1, "country":"euest", "name":"Estonia"},
+    {"users":1, "country":"afzaf", "name":"South Africa"},
+
+]
+
+  // instantiate d3plus
+  var visualization = d3plus.viz()
+    .container("#viz-zeppelin-all")        // container DIV to hold the visualization
+    .data(sample_data)        // data to use with the visualization
+    //.coords("http://d3plus.org/topojson/countries.json") // pass topojson coordinates
+    .coords("countries.json")
+    .type("geo_map")          // visualization type
+    .id("country")            // key for which our data is unique on
+    .labels({"value": true})
+    .text("name")
+    .background("#f0f0f0") // accepts any valid CSS color
+    //.labels({"value": true, "resize": false})
+    .color({"heatmap":["#4393c3","#b2182b"], "value":"users"})           // key for coloring countries
+    .tooltip("users")         // keys to place in tooltip
+    .title({
+       "sub": "Data Access by User Country: Zeppelin (all)",
+      //"sub": "Number of visitors for each country using mock data (Click on country to zoom, double click on selected country to zoom out. You could also scroll //as well as click and drag the map around.)",
+      "total": true,
+      /*"height": 100,*/
+      "width": 800
+       
+    })
+    .font({"size": 20})   
+    .footer({
+      "link": "http://actris.nilu.no",
+      "value": "Click here to find more information about the ACTRIS project"
+    })
+    .draw()                   // finally, draw the visualization!
+  
+
+  
+</script>
+    <hr>
+<div id="viz-zeppelin-only-actris-variables">
+    
+</div>       
     
 <script>
   // sample data array
@@ -81,7 +174,7 @@ tspan {
 
   // instantiate d3plus
   var visualization = d3plus.viz()
-    .container("#viz")        // container DIV to hold the visualization
+    .container("#viz-zeppelin-only-actris-variables")        // container DIV to hold the visualization
     .data(sample_data)        // data to use with the visualization
     //.coords("http://d3plus.org/topojson/countries.json") // pass topojson coordinates
     .coords("countries.json")
@@ -89,14 +182,16 @@ tspan {
     .id("country")            // key for which our data is unique on
     .labels({"value": true})
     .text("name")
+    .background("#f0f0f0") // accepts any valid CSS color
     //.labels({"value": true, "resize": false})
-    .color({"heatmap":["#ffffe5","#662506"], "value":"downloads"})           // key for coloring countries
+    .color({"heatmap":["#4393c3","#b2182b"], "value":"downloads"})           // key for coloring countries
     .tooltip("downloads")         // keys to place in tooltip
     .title({
-      "sub": "Number of visitors for each country using mock data (Click on country to zoom, double click on selected country to zoom out. You could also scroll as well as click and drag the map around.)",
+       "sub": "Data Access by User Country: Zeppelin (only ACTRIS variables)",
+      //"sub": "Number of visitors for each country using mock data (Click on country to zoom, double click on selected country to zoom out. You could also scroll //as well as click and drag the map around.)",
       "total": true,
       /*"height": 100,*/
-      "width": 1200
+      "width": 800
        
     })
     .font({"size": 20})   
@@ -109,11 +204,11 @@ tspan {
 
   
 </script>
-
-        <div id="viz_sankey"></div>
+        <!--<div id="viz_sankey"></div>-->
 
 <script>
-  var nodes = [
+  /*
+    var nodes = [
     {"id": "EBAS"}, // 0
     {"id": "CLOUDNET"}, // 1
     {"id": "EARLINET"}, // 2
@@ -172,7 +267,7 @@ tspan {
         return d.downloads > 0 ? "#ffffe5" : "#525252";
     })
     .type("sankey")
-    .draw();
+    .draw();*/
 </script>
 
 </body>
