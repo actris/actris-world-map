@@ -46,8 +46,6 @@
         background-color:grey;
     }
     
-
-    
 </style>
 
 </head>
@@ -60,12 +58,7 @@
         
 <script>
 
-
-
-
-
 var sample_data = [
-
     {"users":205, "country":"eunor", "name":"Norway"},
     {"users":138, "country":"nausa", "name":"United States"},
     {"users":99, "country":"eugbr", "name":"United Kingdom"},
@@ -107,36 +100,30 @@ var sample_data = [
 
 ]
 
-  // instantiate d3plus
   var visualization = d3plus.viz()
-    .container("#viz-zeppelin-all")        // container DIV to hold the visualization
-    .data(sample_data)        // data to use with the visualization
-    //.coords("http://d3plus.org/topojson/countries.json") // pass topojson coordinates
+    .container("#viz-zeppelin-all")       
+    .data(sample_data)        
     .coords("countries.json")
-    .type("geo_map")          // visualization type
-    .id("country")            // key for which our data is unique on
-    .labels({"value": true})
+    .type("geo_map")          
+    .id("country")            
     .text("name")
-    .background("#f0f0f0") // accepts any valid CSS color
-    //.labels({"value": true, "resize": false})
-    .color({"heatmap":["#4393c3","#b2182b"], "value":"users"})           // key for coloring countries
-    .tooltip("users")         // keys to place in tooltip
+    .background("#f0f0f0") 
+    .legend({
+        "value": true,
+    })
+    .color({
+        "heatmap":["#4393c3","#b2182b"], 
+        "value":"users"
+    })           
+    .tooltip("users")         
     .title({
        "sub": "Data Access by User Country: Zeppelin (all)",
-      //"sub": "Number of visitors for each country using mock data (Click on country to zoom, double click on selected country to zoom out. You could also scroll //as well as click and drag the map around.)",
       "total": true,
-      /*"height": 100,*/
-      "width": 800
+      "width": 1200
        
     })
-    .font({"size": 20})   
-    .footer({
-      "link": "http://actris.nilu.no",
-      "value": "Click here to find more information about the ACTRIS project"
-    })
-    .draw()                   // finally, draw the visualization!
-  
-
+    .font({"size": 40})   
+    .draw()                   
   
 </script>
     <hr>
@@ -145,7 +132,6 @@ var sample_data = [
 </div>       
     
 <script>
-  // sample data array
 
   var sample_data = [
 {"users":118, "country":"eunor", "name":"Norway"},
@@ -180,104 +166,29 @@ var sample_data = [
 {"users":1, "country":"afzaf", "name":"South Africa"},
 ]
 
-  // instantiate d3plus
   var visualization = d3plus.viz()
-    .container("#viz-zeppelin-only-actris-variables")        // container DIV to hold the visualization
-    .data(sample_data)        // data to use with the visualization
-    //.coords("http://d3plus.org/topojson/countries.json") // pass topojson coordinates
+    .container("#viz-zeppelin-only-actris-variables")        
+    .data(sample_data)        
     .coords("countries.json")
-    .type("geo_map")          // visualization type
-    .id("country")            // key for which our data is unique on
+    .type("geo_map")        
+    .id("country")            
     .labels({"value": true})
     .text("name")
-    .background("#f0f0f0") // accepts any valid CSS color
-    //.labels({"value": true, "resize": false})
-    .color({"heatmap":["#4393c3","#b2182b"], "value":"users"})           // key for coloring countries
+    .background("#f0f0f0") 
+    .color({"heatmap":["#4393c3","#b2182b"], "value":"users"})           
     .tooltip("users")         // keys to place in tooltip
     .title({
        "sub": "Data Access by User Country: Zeppelin (only ACTRIS variables)",
-      //"sub": "Number of visitors for each country using mock data (Click on country to zoom, double click on selected country to zoom out. You could also scroll //as well as click and drag the map around.)",
       "total": true,
-      /*"height": 100,*/
-      "width": 800
-       
+      "width": 1200,       
     })
-    .font({"size": 20})   
-    .footer({
-      "link": "http://actris.nilu.no",
-      "value": "Click here to find more information about the ACTRIS project"
-    })
-    .draw()                   // finally, draw the visualization!
+    .font({"size": 40})   
+    .draw()                   
   
 
   
 </script>
-        <!--<div id="viz_sankey"></div>-->
-
-<script>
-  /*
-    var nodes = [
-    {"id": "EBAS"}, // 0
-    {"id": "CLOUDNET"}, // 1
-    {"id": "EARLINET"}, // 2
-    {"id": "ICARE"}, // 3
-    {"id": "Total"}, // 4
-    {"id": "Norway"}, //5
-    {"id": "Sweden"}, //6
-      {"id": "Germany"}, //7
-      {"id": "Brazil"}, //8
-      {"id": "Russia"}, //9
-      {"id": "China"}, //10
-      {"id": "Switzerland"}, //11
-      {"id": "Italy"}, //12
-  ];
-    
-  var edges = [
-    {"downloads": 50, "source": 0, "target": 4},
-    {"downloads": 20, "source": 1, "target": 4},
-    {"downloads": 10, "source": 2, "target": 4},
-    {"downloads": 20, "source": 3, "target": 4},
-    {"downloads": 10, "source": 4, "target": 5},
-    {"downloads": 5, "source": 4, "target": 6},
-    {"downloads": 5, "source": 4, "target": 7},
-    {"downloads": 20, "source": 4, "target": 8},
-    {"downloads": 30, "source": 4, "target": 9},
-    {"downloads": 20, "source": 4, "target": 10},
-    {"downloads": 4, "source": 4, "target": 11},
-    {"downloads": 6, "source": 4, "target": 12},
-    
-  ];
-  var visualization = d3plus.viz()
-    .container("#viz_sankey")
-    .edges({
-      "strength": "downloads",
-      "value": edges
-    })
-    .focus({
-      "tooltip": true,
-      "value": "Total"
-    })
-    .tooltip("downloads")
-    .title({
-      "sub": "Number of downloads (mock data). Click the database to get more information",
-      "total": true
-       
-    })
-    .font({"size": 20})   
-    .footer({
-      "link": "http://actris.nilu.no",
-      "value": "Click here to find more information about the ACTRIS project"
-    })
-    .id("id")
-    .nodes(nodes)
-    .size(100)
-    .color(function(d){
-        return d.downloads > 0 ? "#ffffe5" : "#525252";
-    })
-    .type("sankey")
-    .draw();*/
-</script>
-
+ 
 </body>
 
 </html>
