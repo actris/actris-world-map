@@ -20,6 +20,20 @@
     
 <style>
     
+    body {
+        background-color:#f0f0f0;
+        
+    }
+    
+    .info {
+        margin-left: 2em;
+        margin-right: 2em;
+        padding:20px;
+        background-color: #969696;
+        color:white;
+        border-radius: 25px;
+    }
+    
     tspan {
         font-family: Arial, Helvetica, sans-serif;
         /*font-size:1.3em;*/
@@ -51,6 +65,83 @@
 </head>
 
 <body>
+    
+<div id="viz-zeppelin-and-birkenes">
+    
+</div>    
+        
+<script>
+
+var sample_data = [
+    {"users":676, "country":"eunor", "name":"Norway"},
+    {"users":153, "country":"nausa", "name":"United States"},
+    {"users":75, "country":"eugbr", "name":"United Kingdom"},
+    {"users":56, "country":"euche", "name":"Switzerland"},
+    {"users":57, "country":"eudeu", "name":"Germany"},
+    {"users":51, "country":"eufra", "name":"France"},
+    {"users":40, "country":"eunld", "name":"Netherlands"},
+    {"users":46, "country":"eugrc", "name":"Greece"},
+    {"users":60, "country":"eufin", "name":"Finland"},
+    {"users":36, "country":"nacan", "name":"Canada"},
+    {"users":55, "country":"euswe", "name":"Sweden"},
+    {"users":30, "country":"aschn", "name":"China"}, 
+    {"users":39, "country":"euita", "name":"Italy"},
+    {"users":14, "country":"euesp", "name":"Spain"},
+    {"users":25, "country":"asjpn", "name":"Japan"},
+    {"users":6, "country":"eucze", "name":"Czech Republic"},
+    {"users":4, "country":"euirl", "name":"Ireland"},
+    {"users":6, "country":"euaut", "name":"Austria"},
+    {"users":10, "country":"eudnk", "name":"Denmark"},
+    {"users":6, "country":"eupol", "name":"Poland"},
+    {"users":2, "country":"euhun", "name":"Hungary"},
+    {"users":5, "country":"asrus", "name":"Russia"},
+    {"users":5, "country":"ocaus", "name":"Australia"},
+    {"users":4, "country":"eubel", "name":"Belgium"},
+    {"users":1, "country":"euhrv", "name":"Croatia"},
+    {"users":1, "country":"eultu", "name":"Lithuania"},
+    {"users":4, "country":"euisl", "name":"Iceland"},
+    {"users":1, "country":"sabol", "name":"Bolivia"},
+    {"users":1, "country":"asirn", "name":"Iran"},
+    {"users":1, "country":"asarm", "name":"Armenia"},
+    {"users":1, "country":"asvnm", "name":"Vietnam"},
+    {"users":1, "country":"ascyp", "name":"Cyprus"},
+    {"users":13, "country":"askor", "name":"South Korea"},
+    {"users":8, "country":"asind", "name":"India"},
+    {"users":1, "country":"eulux", "name":"Luxembourg"},
+    {"users":3, "country":"assgp", "name":"Singapore"},
+    {"users":1, "country":"assau", "name":"Saudi Arabia"},
+]
+
+  var visualization = d3plus.viz()
+    .container("#viz-zeppelin-and-birkenes")       
+    .data(sample_data)        
+    .coords("countries.json")
+    .type("geo_map")          
+    .id("country")            
+    .text("name")
+    .background("#f0f0f0") 
+    .legend({
+        "value": true,
+    })
+    .color({
+        "heatmap":["#e5f5e0","#08306b"], 
+        "value":"users"
+    })           
+    .tooltip("users")         
+    .title({
+       "sub": "Data Access Zeppelin and Birkenes",
+      "total": true,
+      "width": 1200
+       
+    })
+    .font({"size": 40})   
+    .draw()                   
+  
+</script>
+    <p style="font-size:2em;" class="info">Data access shown from the map above is from the following list of programs: ACTRIS, ACTRIS_preliminary, ACTRIS_NRT, EUSAAR_NRT, EUSAAR, GAW-WDCA, GAW-WDCA_NRT, EMEP_NRT, EUCAARI</p>
+    <hr>    
+    
+<!-- New viz below -->    
     
 <div id="viz-zeppelin-all">
     
@@ -112,7 +203,7 @@ var sample_data = [
         "value": true,
     })
     .color({
-        "heatmap":["#4393c3","#b2182b"], 
+        "heatmap":["#e5f5e0","#08306b"], 
         "value":"users"
     })           
     .tooltip("users")         
@@ -175,7 +266,7 @@ var sample_data = [
     .labels({"value": true})
     .text("name")
     .background("#f0f0f0") 
-    .color({"heatmap":["#4393c3","#b2182b"], "value":"users"})           
+    .color({"heatmap":["#e5f5e0","#08306b"], "value":"users"})           
     .tooltip("users")         // keys to place in tooltip
     .title({
        "sub": "Data Access by User Country: Zeppelin (only ACTRIS variables)",
