@@ -231,8 +231,6 @@ var map_data2 = [
     
 <!-- Mapping correlation -->
     
-<h1 id="scatter-title">Top 20: Relationship between years of downloaded data and amount of users by individual IPs</h1>
-
 <!-- create container element for visualization -->
 <div id="correlation"></div>
 
@@ -288,6 +286,13 @@ var map_data2 = [
     .x("users")         // key for x-axis
     .y("years")        // key for y-axis
     .size(30)
+    .title({
+      "sub": "Top 20: Relationship between years of downloaded data and amount of users by individual IPs",
+      "total": true,
+      "width": 1200
+
+    })
+    .font({"size": 40})
     //.axes({"mirror": true}) // Mirrors range of x & y axes
     .draw()             // finally, draw the visualization!
 </script>
