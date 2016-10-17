@@ -56,70 +56,58 @@
         margin-bottom:200px;
         
     }
-    
-
-    
- 
-    
+        
 </style>
 
 </head>
 
 <body>
     
-<div id="gaw-actris">
+<div id="global-distribution-of-number-of-download-of-french-actris-data">
 
 </div>
     
 <script>
 
-var sample_data = [
-    {"users":75, "country":"eunor", "name":"Norway"},
-    {"users":75, "country":"nausa", "name":"United States"},
-    {"users":29, "country":"eugbr", "name":"United Kingdom"},
-    {"users":26, "country":"euche", "name":"Switzerland"},
-    {"users":38, "country":"eudeu", "name":"Germany"},
-    {"users":23, "country":"eufra", "name":"France"},
-    {"users":11, "country":"eunld", "name":"Netherlands"},
-    {"users":18, "country":"eugrc", "name":"Greece"},
-    {"users":28, "country":"eufin", "name":"Finland"},
-    {"users":14, "country":"nacan", "name":"Canada"},
-    {"users":20, "country":"euswe", "name":"Sweden"},
-    {"users":12, "country":"aschn", "name":"China"}, 
-    {"users":33, "country":"euita", "name":"Italy"},
-    {"users":10, "country":"euesp", "name":"Spain"},
-    {"users":14, "country":"asjpn", "name":"Japan"},
-    {"users":7, "country":"eucze", "name":"Czech Republic"},
-    {"users":4, "country":"euirl", "name":"Ireland"},
-    {"users":2, "country":"euaut", "name":"Austria"},
-    {"users":7, "country":"eudnk", "name":"Denmark"},
-    {"users":8, "country":"eupol", "name":"Poland"},
-    {"users":3, "country":"euhun", "name":"Hungary"},
-    {"users":1, "country":"asrus", "name":"Russia"},
-    {"users":6, "country":"ocaus", "name":"Australia"},
-    {"users":1, "country":"eubel", "name":"Belgium"},
-    {"users":1, "country":"euhrv", "name":"Croatia"},
-    {"users":2, "country":"eultu", "name":"Lithuania"},
-    {"users":2, "country":"euisl", "name":"Iceland"},
-    {"users":2, "country":"sabol", "name":"Bolivia"},
-    {"users":2, "country":"ascyp", "name":"Cyprus"},
-    {"users":14, "country":"askor", "name":"South Korea"},
-    {"users":3, "country":"asind", "name":"India"},
-    {"users":4, "country":"eusrb", "name":"Serbia"},
-    {"users":3, "country":"eusvn", "name":"Slovenia"},
-    {"users":2, "country":"euest", "name":"Estonia"},
-    {"users":1, "country":"eubgr", "name":"Bulgaria"},
-    {"users":1, "country":"ocidn", "name":"Indonesia"},
-    {"users":1, "country":"asmys", "name":"Malaysia"},
-    {"users":1, "country":"ocidn", "name":"Indonesia"},
-    {"users":1, "country":"asare", "name":"United Arab Emirates"},
-    {"users":1, "country":"eurou", "name":"Romania"},
-    {"users":1, "country":"eumlt", "name":"Malta"}
+var map_data1 = [
+    {"users":556.66, "country":"eunor", "name":"Norway"},
+    {"users":78.67, "country":"nausa", "name":"United States"},
+    {"users":163.87, "country":"eugbr", "name":"United Kingdom"},
+    {"users":59.13, "country":"euche", "name":"Switzerland"},
+    {"users":87.25, "country":"eudeu", "name":"Germany"},
+    {"users":118.29, "country":"eufra", "name":"France"},
+    {"users":53.54, "country":"eunld", "name":"Netherlands"},
+    {"users":20.79, "country":"eugrc", "name":"Greece"},
+    {"users":37.61, "country":"eufin", "name":"Finland"},
+    {"users":96.22, "country":"nacan", "name":"Canada"},
+    {"users":32.56, "country":"euswe", "name":"Sweden"},
+    {"users":14.92, "country":"aschn", "name":"China"}, 
+    {"users":179.69, "country":"euita", "name":"Italy"},
+    {"users":23.00, "country":"euesp", "name":"Spain"},
+    {"users":55.18, "country":"asjpn", "name":"Japan"},
+    {"users":1.00, "country":"eucze", "name":"Czech Republic"},
+    {"users":49.08, "country":"euirl", "name":"Ireland"},
+    {"users":12.91, "country":"eudnk", "name":"Denmark"},
+    {"users":4.93, "country":"eupol", "name":"Poland"},
+    {"users":2.09, "country":"euhun", "name":"Hungary"},
+    {"users":1.99, "country":"eubel", "name":"Belgium"},
+    {"users":1.09, "country":"eultu", "name":"Lithuania"},
+    {"users":4.01, "country":"askor", "name":"South Korea"},
+    {"users":2.09, "country":"ocaus", "name":"Australia"},
+    {"users":2.09, "country":"sabol", "name":"Bolivia"},
+    {"users":1.00, "country":"asind", "name":"India"},
+    {"users":1.00, "country":"eusvn", "name":"Slovenia"},
+    {"users":1.00, "country":"afegy", "name":"Egypt"},
+    {"users":2.00, "country":"asmys", "name":"Malaysia"},
+    {"users":1.98, "country":"ashkg", "name":"Hong Kong"},
+    {"users":11.75, "country":"asnpl", "name":"Nepal"},
+    {"users":0.08, "country":"asvnm", "name":"Vietname"},
+    {"users":1.00, "country":"euprt", "name":"Portugal"}
 ]
 
   var visualization = d3plus.viz()
-    .container("#gaw-actris")       
-    .data(sample_data)        
+    .container("#global-distribution-of-number-of-download-of-french-actris-data")       
+    .data(map_data1)        
     .coords("../countries.json")
     .type("geo_map")          
     .id("country")            
@@ -134,24 +122,104 @@ var sample_data = [
     })           
     .tooltip("users")         
     .title({
-       "sub": "Global distribution of ACTRIS-GAW data 2015- September 2016",
+       "sub": "Global distribution of number of download of French ACTRIS data (Number of years of data)",
       "total": true,
       "width": 1200
        
     })
-    .font({"size": 20})   
+    .font({"size": 40})   
     .draw()                   
   
 </script>
 <img src="actris-logo.png" alt="actris logo">
 
-<img src=gaw-logo.jpg alt="gaw logo" >
-
-    <p style="font-size:1em;" class="info"><i>Usage data from ACTRIS,ACTRIS_preliminary,ACTRIS_NRT,EMEP,EUSAAR,EUSAAR_NRT,CREATE,GAW-WDCA,GAW-WDCA_NRT</i></p>
+    <div style="font-size:2em;" class="info">
+        <p><b>Stations:</b> FR%,BO%,NP%</p>
+        <p><b>Frameworks:</b> EUSAAR_NRT,GAW-WDCA_NRT,GAW-WDCGG-node,CREATE,GAW-WDCRG,ACTRIS_NRT,GAW-WDCA,ACTRIS_preliminary,ACTRIS,EUSAAR</p>
+        <p><b>Time interval:</b> 2010-01-01 - 2016-10-01</p>
+    </div>
 
 <br>
     
 <hr>
+    
+<!-- New map here -->    
+        
+<div id="global-distribution-of-users-of-french-actris-data">
+
+</div>
+    
+<script>
+
+var map_data2 = [
+    {"users":21, "country":"eunor", "name":"Norway"},
+    {"users":42, "country":"nausa", "name":"United States"},
+    {"users":26, "country":"eugbr", "name":"United Kingdom"},
+    {"users":22, "country":"euche", "name":"Switzerland"},
+    {"users":19, "country":"eudeu", "name":"Germany"},
+    {"users":34, "country":"eufra", "name":"France"},
+    {"users":12, "country":"eunld", "name":"Netherlands"},
+    {"users":12, "country":"eugrc", "name":"Greece"},
+    {"users":16, "country":"eufin", "name":"Finland"},
+    {"users":13, "country":"nacan", "name":"Canada"},
+    {"users":8, "country":"euswe", "name":"Sweden"},
+    {"users":10, "country":"aschn", "name":"China"}, 
+    {"users":32, "country":"euita", "name":"Italy"},
+    {"users":6, "country":"euesp", "name":"Spain"},
+    {"users":11, "country":"asjpn", "name":"Japan"},
+    {"users":1, "country":"eucze", "name":"Czech Republic"},
+    {"users":2, "country":"euirl", "name":"Ireland"},
+    {"users":4, "country":"eudnk", "name":"Denmark"},
+    {"users":2, "country":"eupol", "name":"Poland"},
+    {"users":2, "country":"euhun", "name":"Hungary"},
+    {"users":2, "country":"ocaus", "name":"Australia"},
+    {"users":1, "country":"eubel", "name":"Belgium"},
+    {"users":1, "country":"eultu", "name":"Lithuania"},
+    {"users":1, "country":"euprt", "name":"Portugal"},
+    {"users":2, "country":"sabol", "name":"Bolivia"},
+    {"users":2, "country":"askor", "name":"South Korea"},
+    {"users":1, "country":"asind", "name":"India"},
+    {"users":1, "country":"eusvn", "name":"Slovenia"},
+    {"users":1, "country":"afegy", "name":"Egypt"},
+    {"users":1, "country":"asmys", "name":"Malaysia"},
+    {"users":1, "country":"ashkg", "name":"Hong Kong"},
+    {"users":4, "country":"asnpl", "name":"Nepal"},
+    {"users":1, "country":"asvnm", "name":"Vietname"}
+]
+
+  var visualization = d3plus.viz()
+    .container("#global-distribution-of-users-of-french-actris-data")       
+    .data(map_data2)        
+    .coords("../countries.json")
+    .type("geo_map")          
+    .id("country")            
+    .text("name")
+    .background("#ffffff") 
+    .legend({
+        "value": true,
+    })
+    .color({
+        "heatmap":["#3690c0","#a50f15"], 
+        "value":"users"
+    })           
+    .tooltip("users")         
+    .title({
+       "sub": "Global distribution of users of French ACTRIS data (Number of individual IPs)",
+      "total": true,
+      "width": 1200
+       
+    })
+    .font({"size": 40})   
+    .draw()                   
+  
+</script>
+<img src="actris-logo.png" alt="actris logo">
+
+    <div style="font-size:2em;" class="info">
+        <p><b>Stations:</b>	FR%,BO%,NP%</p>
+        <p><b>Frameworks:</b> EUSAAR_NRT,GAW-WDCA_NRT,GAW-WDCGG-node,CREATE,GAW-WDCRG,ACTRIS_NRT,GAW-WDCA,ACTRIS_preliminary,ACTRIS,EUSAAR</p>
+        <p><b>Time interval:</b> 2010-01-01 - 2016-10-01</p>
+    </div>
     
 </body>
 
