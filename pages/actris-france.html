@@ -1,0 +1,158 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<!-- load D3js -->
+<script src="../d3.js"></script>
+
+<!-- load topojson library -->
+<script src="../topojson.js"></script>
+
+<!-- load D3plus after D3js -->
+<script src="../d3plus.js"></script>
+
+<!-- create container element for visualization -->
+<div id="viz"></div>
+    
+<style>
+    
+    body {
+        background-color:#ffffff;
+        
+    }
+    
+    .info {
+        margin-left: 2em;
+        margin-right: 2em;
+        padding:20px;
+        font-family: Arial, Helvetica, sans-serif;
+        /*background-color: #969696;
+        color:white;
+        border-radius: 25px;*/
+    }
+    
+    tspan {
+        font-family: Arial, Helvetica, sans-serif;
+        /*font-size:1.3em;*/
+        margin:30px;
+    }
+    
+    #viz {
+        /*margin-top:200px;
+        width: 800px;   
+        height: 800px;*/
+    }
+    
+    #viz_sankey {
+        width: 1200px;
+        height:600px;
+        margin-top:100px;
+        margin-left:400px;
+        margin-right:300px;
+        margin-bottom:200px;
+        
+    }
+    
+
+    
+ 
+    
+</style>
+
+</head>
+
+<body>
+    
+<div id="gaw-actris">
+
+</div>
+    
+<script>
+
+var sample_data = [
+    {"users":75, "country":"eunor", "name":"Norway"},
+    {"users":75, "country":"nausa", "name":"United States"},
+    {"users":29, "country":"eugbr", "name":"United Kingdom"},
+    {"users":26, "country":"euche", "name":"Switzerland"},
+    {"users":38, "country":"eudeu", "name":"Germany"},
+    {"users":23, "country":"eufra", "name":"France"},
+    {"users":11, "country":"eunld", "name":"Netherlands"},
+    {"users":18, "country":"eugrc", "name":"Greece"},
+    {"users":28, "country":"eufin", "name":"Finland"},
+    {"users":14, "country":"nacan", "name":"Canada"},
+    {"users":20, "country":"euswe", "name":"Sweden"},
+    {"users":12, "country":"aschn", "name":"China"}, 
+    {"users":33, "country":"euita", "name":"Italy"},
+    {"users":10, "country":"euesp", "name":"Spain"},
+    {"users":14, "country":"asjpn", "name":"Japan"},
+    {"users":7, "country":"eucze", "name":"Czech Republic"},
+    {"users":4, "country":"euirl", "name":"Ireland"},
+    {"users":2, "country":"euaut", "name":"Austria"},
+    {"users":7, "country":"eudnk", "name":"Denmark"},
+    {"users":8, "country":"eupol", "name":"Poland"},
+    {"users":3, "country":"euhun", "name":"Hungary"},
+    {"users":1, "country":"asrus", "name":"Russia"},
+    {"users":6, "country":"ocaus", "name":"Australia"},
+    {"users":1, "country":"eubel", "name":"Belgium"},
+    {"users":1, "country":"euhrv", "name":"Croatia"},
+    {"users":2, "country":"eultu", "name":"Lithuania"},
+    {"users":2, "country":"euisl", "name":"Iceland"},
+    {"users":2, "country":"sabol", "name":"Bolivia"},
+    {"users":2, "country":"ascyp", "name":"Cyprus"},
+    {"users":14, "country":"askor", "name":"South Korea"},
+    {"users":3, "country":"asind", "name":"India"},
+    {"users":4, "country":"eusrb", "name":"Serbia"},
+    {"users":3, "country":"eusvn", "name":"Slovenia"},
+    {"users":2, "country":"euest", "name":"Estonia"},
+    {"users":1, "country":"eubgr", "name":"Bulgaria"},
+    {"users":1, "country":"ocidn", "name":"Indonesia"},
+    {"users":1, "country":"asmys", "name":"Malaysia"},
+    {"users":1, "country":"ocidn", "name":"Indonesia"},
+    {"users":1, "country":"asare", "name":"United Arab Emirates"},
+    {"users":1, "country":"eurou", "name":"Romania"},
+    {"users":1, "country":"eumlt", "name":"Malta"}
+]
+
+  var visualization = d3plus.viz()
+    .container("#gaw-actris")       
+    .data(sample_data)        
+    .coords("../countries.json")
+    .type("geo_map")          
+    .id("country")            
+    .text("name")
+    .background("#ffffff") 
+    .legend({
+        "value": true,
+    })
+    .color({
+        "heatmap":["#3690c0","#a50f15"], 
+        "value":"users"
+    })           
+    .tooltip("users")         
+    .title({
+       "sub": "Global distribution of ACTRIS-GAW data 2015- September 2016",
+      "total": true,
+      "width": 1200
+       
+    })
+    .font({"size": 20})   
+    .draw()                   
+  
+</script>
+<img src="actris-logo.png" alt="actris logo">
+
+<img src=gaw-logo.jpg alt="gaw logo" >
+
+    <p style="font-size:1em;" class="info"><i>Usage data from ACTRIS,ACTRIS_preliminary,ACTRIS_NRT,EMEP,EUSAAR,EUSAAR_NRT,CREATE,GAW-WDCA,GAW-WDCA_NRT</i></p>
+
+<br>
+    
+<hr>
+    
+</body>
+
+</html>
