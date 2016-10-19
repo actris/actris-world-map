@@ -235,26 +235,28 @@ var map_data2 = [
 <script>
   // sample data array
   var sample_data = [
-    {"users": 20, "years": 318.73, "type": "Norway"},
-    {"users": 20, "years": 332.74, "type": "United Kingdom"},
-    {"users": 23, "years": 40.67, "type": "Italy"},
-    {"users": 22, "years": 145.76, "type": "France"},
-    {"users": 13, "years": 34.07, "type": "Canada"},
-    {"users": 14, "years": 418.36, "type": "Germany"},  
-    {"users": 37, "years": 114.08, "type": "United States"},
-    {"users": 18, "years": 295.89, "type": "Switzerland"},
-    {"users": 10, "years": 94.87, "type": "Japan"},
-    {"users": 8, "years": 39.29, "type": "Netherlands"},
-    {"users": 15, "years": 44.29, "type": "Finland"},
-    {"users": 8, "years": 46.50, "type": "Sweden"},
-    {"users": 4, "years": 26.01, "type": "Spain"},
-    {"users": 11, "years": 40.24, "type": "Greece"},
-    {"users": 7, "years": 14.77, "type": "China"},
-    {"users": 2, "years": 8.87, "type": "Poland"},
-    {"users": 2, "years": 8.01, "type": "South Korea"},
-    {"users": 1, "years": 4.00, "type": "Hungary"},
-    {"users": 2, "years": 6.09, "type": "Australia"},
-    {"users": 1, "years": 5.95, "type": "Belgium"}
+    {"users": 20, "years": 318.73, "country": "Norway"},
+    {"users": 20, "years": 332.74, "country": "United Kingdom"},
+    {"users": 23, "years": 40.67, "country": "Italy"},
+    {"users": 22, "years": 145.76, "country": "France"},
+    {"users": 13, "years": 34.07, "country": "Canada"},
+    {"users": 14, "years": 418.36, "country": "Germany"},  
+    {"users": 37, "years": 114.08, "country": "United States"},
+    {"users": 18, "years": 295.89, "country": "Switzerland"},
+    {"users": 10, "years": 94.87, "country": "Japan"},
+    {"users": 8, "years": 39.29, "country": "Netherlands"},
+    {"users": 15, "years": 44.29, "country": "Finland"},
+    {"users": 8, "years": 46.50, "country": "Sweden"},
+    {"users": 4, "years": 26.01, "country": "Spain"},
+    {"users": 11, "years": 40.24, "country": "Greece"},
+    {"users": 7, "years": 14.77, "country": "China"},
+    /*
+    {"users": 2, "years": 8.87, "country": "Poland"},
+    {"users": 2, "years": 8.01, "country": "South Korea"},
+    {"users": 1, "years": 4.00, "country": "Hungary"},
+    {"users": 2, "years": 6.09, "country": "Australia"},
+    {"users": 1, "years": 5.95, "country": "Belgium"}
+    */
       /*
     {"users": 1, "years": 1.09, "type": "Lithuania"},
     {"users": 1, "years": 2.00, "type": "Portugal"},
@@ -274,19 +276,19 @@ var map_data2 = [
     .container("#correlation")  // container DIV to hold the visualization
     .data(sample_data)  // data to use with the visualization
     .type("scatter")    // visualization type
-    .id("type")         // key for which our data is unique on
+    .id("country")         // key for which our data is unique on
     //.color("type")
-    //.legend({"size": 50})
+    .tooltip(["users","years","country"])
     .x("users")         // key for x-axis
     .y("years")        // key for y-axis
     .size(30)
     .title({
-      "sub": "Top 20: Relationship between years of downloaded data and amount of users by individual IPs",
+      "sub": "Top 15: Relationship between years of downloaded data and amount of users by individual IPs",
       "total": true,
       "width": 1200
 
     })
-    .font({"size": 40})
+    .font({"size": 20})
     //.axes({"mirror": true}) // Mirrors range of x & y axes
     .draw()             // finally, draw the visualization!
 </script>
